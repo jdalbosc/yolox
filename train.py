@@ -104,14 +104,14 @@ def main(_argv):
     print('Freeze the first {} layers of total {} layers.'.format(num, len(model.layers)))
 
     model.compile(loss=loss, optimizer=opt, run_eagerly=False)
-    model.fit(train_dataset,
+    warmup_history = model.fit(train_dataset,
               steps_per_epoch=epoch_steps,
               epochs=1,
               callbacks=warmup_callback
               )
 
     model.compile(loss=loss, optimizer=opt, run_eagerly=False)
-    model.fit(train_dataset,
+    freezed_history = model.fit(train_dataset,
               steps_per_epoch=epoch_steps,
               epochs=epochs // 5 * 2,
               callbacks=eval_callback + lr_callback
@@ -122,12 +122,19 @@ def main(_argv):
 
     # reset sample rate
     model.compile(loss=loss, optimizer=opt, run_eagerly=False)
-    model.fit(train_dataset,
+    unfreezed_history = model.fit(train_dataset,
               steps_per_epoch=epoch_steps,
               epochs=epochs // 5 * 3,
               callbacks=eval_callback + lr_callback
               )
+    import matplotlib.pyplot as plt
 
+    for history in [
+        (warmup_history, 'warmup loss'), 
+        (freezed_history, 'freezed loss'), 
+        (unfreezed_history, 'unfreezed loss')]:
+        plt.plot(history[0].history['loss'], label=history[1])
+        plt.show()
 
 if __name__ == "__main__":
     app.run(main)
