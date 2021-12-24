@@ -3,11 +3,22 @@ import numpy as np
 import cv2
 
 from core.utils import decode_annotation
+import argparse
+
+parser = argparse.ArgumentParser(description='Compute anchor boxes.')
+parser.add_argument('--num-clusters', type=int, nargs='?', default=9,
+                    help='Number of clusters')
+parser.add_argument('--image-size', type=int, nargs='?', default=416,
+                    help='Base image size')
+parser.add_argument('--output', type=str,
+                    help='Write to output file')
+parser.add_argument('dataset', type=str, help='Path to the dataset')
+args = parser.parse_args()
 
 # Parameters
-K = 6
-image_size = 416
-dataset_path = './data/pascal_voc/train.txt'
+K = args.num_clusters
+image_size = args.image_size
+dataset_path = args.dataset
 
 print('Num of Clusters is', K)
 print('Base Image Size is', image_size)
@@ -81,3 +92,7 @@ for w, h in clusters[1:]:
 
 print('K-Means Result:')
 print(info)
+
+if args.output:
+    with open(args.output, 'w') as output_file:
+        output_file.write(info.rstrip())
