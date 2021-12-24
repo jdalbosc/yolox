@@ -33,7 +33,7 @@ def resize_bboxes(path, bboxes):
     return bboxes
 
 
-bboxes = [resize_bboxes(ann[0], ann[1]) for ann in anns]
+bboxes = [resize_bboxes(ann[0], ann[1]) for ann in anns if len(ann[1]) > 0]
 
 # Accumulate bboxes
 bboxes = np.concatenate(bboxes, axis=0)
