@@ -24,6 +24,7 @@ train:
   normal_method: true
 
   ignore_threshold: 0.5
+  epochs: 80
 
 test:
   anno_path: "/Users/jean-francois.dalbos/dev/kaggle/yolox/data/coco128/val.txt"
