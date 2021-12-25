@@ -28,6 +28,7 @@ def decode_cfg(path):
 
         cfg['train']['image_size'] = list(map(int, cfg['train']['image_size'].split(',')))
         cfg['train']['epochs'] = int(cfg['train']['epochs'])
+        cfg['train']['epoch_steps'] = int(cfg['train']['epoch_steps'])
         cfg['test']['image_size'] = list(map(int, cfg['test']['image_size'].split(',')))
 
 

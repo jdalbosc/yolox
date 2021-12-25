@@ -52,7 +52,7 @@ def main(_argv):
     else:
         raise NotImplementedError()
 
-    epoch_steps = 4000
+    epoch_steps = cfg['train']['epoch_steps']
 
     model, eval_model = Model(cfg)
     model.summary()
