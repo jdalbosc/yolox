@@ -52,11 +52,11 @@ def main(_argv):
     else:
         raise NotImplementedError()
 
-    epoch_steps = 4000
-
     model, eval_model = Model(cfg)
     model.summary()
     train_dataset = Dataset(cfg)
+
+    epoch_steps = len(train_dataset)
 
     init_weight = cfg["train"]["init_weight_path"]
     anchors = cfg['yolo']['anchors']
