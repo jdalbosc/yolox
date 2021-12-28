@@ -64,7 +64,7 @@ def local_eval(func, model, image_size, test_path, name_path, verbose):
 
     ans = func(test_path, tmp_path, name_path, verbose=verbose)
     # remove tmp
-    os.remove(tmp_path)
+    #os.remove(tmp_path)
 
     if verbose:
         if len(infer_time) > 5:
