@@ -33,7 +33,7 @@ def main(_argv):
         from core.model.one_stage.yolov4 import YOLOv4 as Model
         from core.model.one_stage.yolov4 import YOLOLoss as Loss
         num = 251
-        epochs = cfg['train']['epochs']
+        epochs = 80
     elif model_type == 'yolov4_tiny':
         from core.model.one_stage.yolov4 import YOLOv4_Tiny as Model
         from core.model.one_stage.yolov4 import YOLOLoss as Loss
