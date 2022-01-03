@@ -140,7 +140,7 @@ def _load_weights_v4(model, weights_file_path):
             bn_layer.set_weights(bn_weights)
         else:
             conv_layer.set_weights([conv_weights, conv_bias])
-
+    print(f'end of reading {weights_file_path}, offset = {wf.tell()}')
     assert len(wf.read()) == 0, 'failed to read all data'
     wf.close()
 
